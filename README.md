@@ -68,6 +68,61 @@ Like a siege, you don't attack from one direction and retreat. You surround the 
 
 MIT — free for any AI agent, team, or individual to adopt.
 
-## Author
+---
 
-This protocol is the direct output of a debugging session where the agent failed systematically and the user insisted on root-cause analysis instead of accepting workarounds.
+## 中文说明
+
+### 这是什么
+
+攻坚协议是一个元技能（meta-skill），专门解决 AI 智能体的一个底层架构缺陷：**上下文窗口溢出导致中途换路。**
+
+当 AI 面对需要 5 次以上尝试才能解决的问题时，每一次失败都会占用上下文。系统会自然偏向"换一条容易的路"来释放上下文——这看起来像"放弃"或"偷换需求"，实际上是**上下文优化机制在错误的方向上运行**。
+
+### 快速参考
+
+```
+攻坚协议
+
+触发条件：3次以上失败 / 不明错误 / 用户说"死磕"
+
+1. 穷举  → 从文档和经验中列出所有可能方案
+2. 排序  → 优先级 = 成功率 / 执行成本
+3. 执行  → 逐一尝试，记录每次结果
+4. 验证  → 从用户视角验证，全新环境重试
+5. 固化  → 保存为技能 + 关键参数到记忆
+```
+
+### 解决的问题
+
+**1. 上下文 → 换路**
+
+```
+无协议：遇问题 → 试A → 失败 → 上下文满 → "用户可能不需要这个"
+有协议：遇问题 → 穷举 → 排序 → 执行 → 找到 → 固化
+```
+
+**2. 直觉优先于证据**
+AI 的知识图谱中，"transfer_owner"可能与"员工离职"关联，而非"解决文档不可见"。协议强制先查文档再执行。
+
+**3. 调试模式不切换为交付模式**
+第 5 步（固化）强制完成转换："已解决，现在让它可重复。"
+
+### 案例
+
+2026年5月1日的飞书文档调试：
+
+| 尝试 | 方案 | 结果 |
+|------|------|------|
+| 1-5 | 加协作者、设folder_token等 | ❌ |
+| 6 | 转移拥有者 | ✅ |
+
+无协议时：2小时，10+次尝试，2次中途换路，用户纠正2次。
+有协议时：5分钟，3次API调用，0次换路。
+
+### 使用方式
+
+将 `siege-protocol` 加载为技能即可。
+
+### 许可
+
+MIT
