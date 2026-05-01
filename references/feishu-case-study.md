@@ -19,10 +19,10 @@ Using Feishu (Lark) API to create a cloud document that the user can open and ed
 | 5 | Drive API to move document to user's space | ❌ Permission denied | App can't move its own docs to user space |
 | 6 | Create doc via `import` API instead | ❌ Same "page not found" | Different API, same core issue |
 | 7 | Set public permission (`link_share_entity: tenant_readable`) | ❌ Partial — still can't see | Makes doc visible to org, but user still can't find it |
-| 8 | **→ Switch to "send as message instead"** | User: "No, do it properly" | **First premature path-switch** |
+| 8 | → Switch to "send as message instead" | User: "Do it properly" | **First premature path-switch** |
 | 9 | Send rich text message with embedded doc link | ❌ User didn't receive | Gateway issue |
-| 10 | Send as image | ❌ User: "I see nothing useful" | **Second premature path-switch** |
-| 11 | Send as text in chat | ❌ User: "I don't want text" | Desperate attempt |
+| 10 | Send as image | ❌ Not what user needed | **Second premature path-switch** |
+| 11 | Send as text in chat | ❌ User rejected | Desperate attempt |
 | 12 | **Transfer ownership** via `transfer_owner` API | ✅ **WORKS** | User can open, edit, and manage |
 | 13 | Write content via `blocks/{id}/children` API | ✅ **WORKS** | Full content visible |
 
@@ -59,15 +59,15 @@ Plus community approaches:
 
 - B (set public): code=0 but user still can't see. **PARTIAL — C is next.**
 - C (transfer ownership): code=0, user confirms they can open and edit. **WORKS.**
-- Solidified: `feishu-doc-create-and-share` skill created with exact steps.
+- Solidified as reusable skill.
 
 **Actual time with protocol:** ~5 minutes.
 
 ## Key Learnings
 
-1. **Never trust "this feels wrong" about an API** — the `transfer_owner` endpoint felt like an "admin operation" but was the correct solution
+1. **Never trust "this feels wrong" about an API** — `transfer_owner` felt like an "admin operation" but was the correct solution
 2. **FAQ enumeration would have saved 2 hours** — the answer was in the official FAQ all along
-3. **Partial success ≠ dead end** — "public permission" partially worked (doc was now findable by link) even though it wasn't enough alone
+3. **Partial success ≠ dead end** — "public permission" partially worked even though it wasn't enough alone
 4. **User involvement should be last resort**, not first response to failure
 
 ## Before and After

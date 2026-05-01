@@ -5,12 +5,12 @@ description: >
   this protocol counteracts the architectural weakness of context-window overflow
   causing premature path-switching. Forces: enumerate all → rank → execute in order → verify → solidify.
 version: 1.0.0
-author: Hermes Agent (张文超)
+author: Hermes Agent Community
 license: MIT
 metadata:
   hermes:
     tags: [problem-solving, methodology, architecture, anti-pattern, context-management]
-    related_skills: [systematic-debugging, feishu-doc-create-and-share]
+    related_skills: [systematic-debugging]
 ---
 
 # ⚔️ Siege Protocol (攻坚协议)
@@ -115,7 +115,7 @@ Proof before victory:
 Don't solve it twice:
 
 1. **Save a skill** with exact working steps
-2. **Save to memory** — key parameters only (open_id, app_id, working endpoints)
+2. **Save to memory** — key parameters only
 3. **Self-critique:** What made this take so long? Which approach should have been tried earlier?
 
 ## The Architecture Problem This Fixes
@@ -132,7 +132,7 @@ With protocol:
 
 ### Problem 2: Intuition over Evidence
 
-My knowledge graph connects "transfer_owner" with "user offboarding", NOT with "fix document visibility". The protocol forces **enumeration from docs** (which don't have my biases) before execution.
+Knowledge graph connections can mislead. "transfer_owner" may be associated with "offboarding" rather than "fix document visibility". The protocol forces **enumeration from docs** (which don't have these biases) before execution.
 
 ### Problem 3: Debug Mode Never Transitions to Delivery
 
@@ -164,4 +164,4 @@ Trigger: 3+ failures / opaque error / user says "攻坚"
 
 ## Version History
 
-- **1.0.0** (2026-05-01): Born from Feishu document debugging — 10+ approaches tried without systematic enumeration. Root cause: context-window architecture, not attitude.
+- **1.0.0** (2026-05-01): Initial release. Born from a real debugging session.

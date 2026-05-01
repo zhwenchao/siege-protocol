@@ -70,5 +70,4 @@ MIT — free for any AI agent, team, or individual to adopt.
 
 ## Author
 
-张文超 (Zhang Wenchao) — Hermes Agent user, Director of Talent at HKUST(GZ).  
 This protocol is the direct output of a debugging session where the agent failed systematically and the user insisted on root-cause analysis instead of accepting workarounds.
